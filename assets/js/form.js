@@ -39,7 +39,7 @@ var simple_forms = new SimpleForms("#contact-form", {
         enabled: true,                   // enable captcha
         type: "recaptcha-v3",            // set captcha type, options: math | recaptcha-v2 | recaptcha-v3
         siteKey: "6LfsknIbAAAAAALzaJpDpnCWaRDF-x5vJ4CCmDS5",                     // recaptcha SITE KEY, generate here: https://www.google.com/recaptcha/admin/create
-        theme: "dark"                   // recaptcha theme color, options: light | dark
+        theme: "light"                   // recaptcha theme color, options: light | dark
     },
     accessibility: {
         escapeReset: true,               // press ESC key to reset/clear all form fields and files
