@@ -32,7 +32,7 @@ define('SEND_COPY_TO',    "");                      // not required, comma separ
 define('SMTP_AUTHENTICATION', false); // possible values: true | false
 
 static $SMTP_SETTINGS = [
-    "SMTP_HOST"     => "webmail.billionants.com",
+    "SMTP_HOST"     => "smtp.billionants.com",
     "SMTP_USER"     => "contact@billionants.com",
     "SMTP_PASSWORD" => "Billionants@123",
     "SMTP_SECURE"   => "ssl", // possible values: ssl | tls
