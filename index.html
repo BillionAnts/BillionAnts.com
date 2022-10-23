@@ -40,6 +40,66 @@
 	<!-- Simple Forms -->
 	<link rel="stylesheet" href="assets/vendor/simple-forms/css/simple-forms-skilltech-mod.css"> 
 
+		<!-- for AWS API Gateway, Lambada, SES -->
+		<script> function submitToAPI(e) {
+		e.preventDefault();
+		var URL = "https://8btctgg254.execute-api.eu-west-1.amazonaws.com/UnitTest";
+ 
+			 var Namere = /[A-Za-z]{1}[A-Za-z]/;
+			 if (!Namere.test($("#name-input").val())) {
+				 alert ("Name can not less than 2 char");
+				 return;
+			 }
+			 var mobilere = /[0-9]{10}/;
+			 if (!mobilere.test($("#phone-input").val())) {
+				 alert ("Please enter valid mobile number");
+				 return;
+			 }
+			 if ($("#email-input").val()=="") {
+				 alert ("Please enter your email id");
+				 return;
+			 }
+ 
+			 var reeamil = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
+			 if (!reeamil.test($("#email-input").val())) {
+				 alert ("Please enter valid email address");
+				 return;
+			 }
+ 
+		var name = $("#name-input").val();
+		var phone = $("#phone-input").val();
+		var email = $("#email-input").val();
+		var desc = $("#description-input").val();
+		var data = {
+		   name : name,
+		   phone : phone,
+		   email : email,
+		   desc : desc
+		 };
+		 
+ console.log("ddddddata.............",data);
+		$.ajax({
+		  type: "POST",
+		  url : "https://8btctgg254.execute-api.eu-west-1.amazonaws.com/UnitTest",
+		  dataType: "json",
+		  crossDomain: "true",
+		  contentType: "application/json; charset=utf-8",
+		  data: JSON.stringify(data),
+ 
+		  success: function () {
+			// clear form and show a success message
+			alert("Successfull");
+			document.getElementById("contact-form").reset();
+		location.reload();
+		  },
+		  error: function () {
+			// show an error message
+			alert("UnSuccessfull");
+		  }});
+		  
+	  }
+	</script>
+ 
 </head>
 
 <body class="pa-homepage pa-dark">
@@ -711,22 +771,30 @@
 								
 								<div class="form-group">
 									<label>Name</label>
-									<input type="text" name="name" value="" class="validate-name" minlength="2" required>
+									<input type="text" id="name-input" value="" class="validate-name" minlength="2" required>
 								</div>
 
 								<div class="form-group">
-									<label>Email</label>
-									<input type="text" name="email" class="validate-email" value="">
+									<label>Phone</label>
+									<input type="text" id="phone-input" class="validate-name" minlength="10" value="">
 								</div>
 								
 								<div class="form-group">
-									<label>Message</label>
-									<textarea name="message" required></textarea>
+									<label>Email</label>
+									<input type="text" id="email-input" class="validate-email" value="">
 								</div>
 
+								<div class="form-group">
+									<label>Message</label>
+									<textarea id="description-input" minlength="5" required></textarea>
+								</div>
+
+							</form>
 
 								<div class="form-submit">
-									<button type="submit" class="pa-hvr-sweep-to-right">Send now</button>
+									<!-- old contact form (PHP)
+									<button type="submit" class="pa-hvr-sweep-to-right">Send now</button> -->
+									<button type="submit" onClick="submitToAPI(event)" class="pa-hvr-sweep-to-right">Submit</button>
 								</div>
 
 								<div class="server-response"></div>
